@@ -1,0 +1,4 @@
+node_modules
+.phpunit.result.cache
+wp
+vendor

@@ -1,0 +1,16 @@
+.ytwc-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.ytwc-grid__item {
+    background-color: #f2f2f2;
+    aspect-ratio: 4 / 3;
+    min-height: 180px;
+}
+
+.ytwc-grid__item > iframe {
+    width: 100%;
+    height: 100%;
+}
