@@ -3,13 +3,16 @@
  * Plugin Name: Youtube Videos For WooCommerce
  * Plugin URI: https://wpwax.com/
  * Description: WooCommerce product related youtube videos.
- * Version: 0.1.0
+ * Version: 1.0.1
  * Author: wpWax
  * Author URI: https://wpwax.com
  * Text Domain: youtube-videos-for-woocommerce
  * Domain Path: /languages/
  * Requires at least: 5.5
+ * Tested up to: 6.0
  * Requires PHP: 7.0
+ * WC requires at least: 3
+ * WC tested up to: 6.5
  *
  * @package WC_Youtube_Videos
  */
