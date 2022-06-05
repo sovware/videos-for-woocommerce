@@ -76,6 +76,41 @@ final class WC_Youtube_Videos {
 		add_action( 'save_post', array( $this, 'cache_videos' ) );
 		add_filter( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_filter( 'woocommerce_product_tabs', array( $this, 'add_product_tab' ) );
+
+		add_filter( 'woocommerce_get_sections_products', array( $this, 'add_settings_section' ), 999 );
+		add_filter( 'woocommerce_get_settings_products', array( $this, 'add_settings_fields' ), 10, 2 );
+	}
+
+	public function add_settings_section( $sections ) {
+		$sections['ytwc'] = esc_html__( 'Youtube Vidoes', 'youtube-videos-for-woocommerce' );
+		return $sections;
+	}
+
+	public function add_settings_fields( $fields, $section_id ) {
+		if ( $section_id === 'ytwc' ) {
+			$fields['ytwc_section_start'] = array(
+				'name'     => esc_html__( 'Youtube Videos Settings', 'youtube-videos-for-woocommerce' ),
+				'type'     => 'title',
+				'id'       => 'ytwc_section_start'
+			);
+			$fields['ytwc_youtube_api_key'] = array(
+				'name' => esc_html__( 'API Key', 'youtube-videos-for-woocommerce' ),
+				'type' => 'text',
+				'desc' => sprintf(
+					__( 'You have to put your API key here. %1$sClick here to get your API key%1$s', 'youtube-videos-for-woocommerce' ),
+					'<a href="https://developers.google.com/youtube/v3/getting-started" rel="noopener" target="_blank">',
+					'</a>',
+				),
+				'id'       => 'ytwc_youtube_api_key',
+				'autoload' => 'no',
+			);
+			$fields['ytwc_section_end'] = array(
+				'type' => 'sectionend',
+				'id'   => 'wc_settings_tab_demo_section_end'
+			);
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -87,7 +122,7 @@ final class WC_Youtube_Videos {
 	 */
 	public function add_product_tab( $tabs ) {
 		$tabs['ytwc'] = array(
-			'title' 	=> __( 'Videos', 'youtube-videos-for-woocommerce' ),
+			'title' 	=> esc_html__( 'Videos', 'youtube-videos-for-woocommerce' ),
 			'priority' 	=> 50,
 			'callback' 	=> array( $this, 'render_product_tab' )
 		);
@@ -104,6 +139,7 @@ final class WC_Youtube_Videos {
 		global $product;
 
 		$videos = $this->get_videos( $product->get_id() );
+
 		if ( $videos ) :
 		?>
 		<div class="ytwc-grid">
@@ -156,7 +192,7 @@ final class WC_Youtube_Videos {
 	}
 
 	public function query_videos( $query_string ) {
-		$api_key = 'AIzaSyDX2n54ulhfNRFu7gr7-JSSK_2t01bs5Qo';
+		$api_key = get_option( 'ytwc_youtube_api_key' );
 		$api_url = 'https://www.googleapis.com/youtube/v3/search';
 		$api_url = add_query_arg(
 			array(
