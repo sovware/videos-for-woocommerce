@@ -1,0 +1,55 @@
+# Copyright (C) 2022 wpWax
+# This file is distributed under the same license as the Youtube Videos For WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Youtube Videos For WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/youtube-videos-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-06-05T10:30:52+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: youtube-videos-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+msgid "Youtube Videos For WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wpwax.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "WooCommerce product related youtube videos."
+msgstr ""
+
+#. Author of the plugin
+msgid "wpWax"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wpwax.com"
+msgstr ""
+
+#: youtube-videos-for-woocommerce.php:85
+msgid "Youtube Vidoes"
+msgstr ""
+
+#: youtube-videos-for-woocommerce.php:92
+msgid "Youtube Videos Settings"
+msgstr ""
+
+#: youtube-videos-for-woocommerce.php:97
+msgid "API Key"
+msgstr ""
+
+#: youtube-videos-for-woocommerce.php:100
+msgid "You have to put your API key here. %1$sClick here to get your API key%1$s"
+msgstr ""
+
+#: youtube-videos-for-woocommerce.php:125
+msgid "Videos"
+msgstr ""
