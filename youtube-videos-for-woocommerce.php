@@ -117,14 +117,20 @@ final class WC_Youtube_Videos {
 			<?php endforeach; ?>
 		</div>
 		<script>
-			var ytwc = document.querySelector('#tab-title-ytwc');
+			var ytwc = document.querySelector('#tab-title-ytwc > a');
 			if (ytwc) {
 				ytwc.addEventListener('click', function(event) {
+					event.preventDefault();
+					if (event.target.classList.contains('ytwc-loaded')) {
+						return false;
+					}
+					
 					var iframes = document.querySelectorAll('.ytwc-grid__item > iframe');
 					if (iframes) {
 						iframes.forEach(function(iframe) {
 							iframe.setAttribute('src', iframe.getAttribute('data-src'));
 						});
+						event.target.classList.add('ytwc-loaded');
 					}
 				});
 			}
