@@ -76,6 +76,8 @@ final class WC_Youtube_Videos {
 	 * @return void
 	 */
 	public function setup_hooks() {
+		$this->load_plugin_textdomain();
+		
 		add_action( 'save_post', array( $this, 'cache_videos' ) );
 		add_filter( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_filter( 'woocommerce_product_tabs', array( $this, 'add_product_tab' ) );
@@ -86,6 +88,14 @@ final class WC_Youtube_Videos {
 		// Add link to settings page.
 		add_filter( 'plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
 		add_filter( 'network_admin_plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
+	}
+
+	public function load_plugin_textdomain() {
+		load_plugin_textdomain(
+			'youtube-videos-for-woocommerce',
+			false,
+			dirname( plugin_basename( __FILE__ ) ) . '/languages'
+		 );
 	}
 
 	public function add_plugin_action_links( $links, $file ) {
