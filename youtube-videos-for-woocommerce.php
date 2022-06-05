@@ -3,7 +3,7 @@
  * Plugin Name: Youtube Videos For WooCommerce
  * Plugin URI: https://wpwax.com/
  * Description: WooCommerce product related youtube videos.
- * Version: 1.0.1
+ * Version: 1.0.0
  * Author: wpWax
  * Author URI: https://wpwax.com
  * Text Domain: youtube-videos-for-woocommerce
@@ -82,6 +82,34 @@ final class WC_Youtube_Videos {
 
 		add_filter( 'woocommerce_get_sections_products', array( $this, 'add_settings_section' ), 999 );
 		add_filter( 'woocommerce_get_settings_products', array( $this, 'add_settings_fields' ), 10, 2 );
+
+		// Add link to settings page.
+		add_filter( 'plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
+		add_filter( 'network_admin_plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
+	}
+
+	public function add_plugin_action_links( $links, $file ) {
+		// Return normal links if not BuddyPress.
+		if ( plugin_basename( __FILE__ ) != $file ) {
+			return $links;
+		}
+
+		$url = add_query_arg( array(
+			'page'    => 'wc-settings',
+			'tab'     => 'products',
+			'section' => 'ytwc',
+		), self_admin_url( 'admin.php' ) );
+
+		if ( empty( get_option( 'ytwc_youtube_api_key' ) ) ) {
+			$link_text = esc_html__( 'Set API Key', 'youtube-videos-for-woocommerce' );
+		} else {
+			$link_text = esc_html__( 'Settings', 'youtube-videos-for-woocommerce' );
+		}
+
+		// Add a few links to the existing links array.
+		return array_merge( $links, array(
+			'settings' => '<a href="' . esc_url( $url ) . '">' . $link_text . '</a>',
+		) );
 	}
 
 	public function add_settings_section( $sections ) {
