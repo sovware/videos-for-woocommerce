@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Youtube Videos For WooCommerce
+ * Plugin Name: Videos For WooCommerce
  * Plugin URI: https://wpwax.com/
  * Description: WooCommerce product related youtube videos.
  * Version: 1.0.0
  * Author: wpWax
  * Author URI: https://wpwax.com
- * Text Domain: youtube-videos-for-woocommerce
+ * Text Domain: videos-for-woocommerce
  * Domain Path: /languages/
  * Requires at least: 5.5
  * Tested up to: 6.0
@@ -14,7 +14,7 @@
  * WC requires at least: 3
  * WC tested up to: 6.5
  *
- * @package WC_Youtube_Videos
+ * @package WC_Videos
  */
 namespace wpWax;
 
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * WooCommerce Product Related Youtube Videos class.
  */
-final class WC_Youtube_Videos {
+final class WC_Videos {
 
 	/**
 	 * Plugin version.
@@ -35,16 +35,16 @@ final class WC_Youtube_Videos {
 	protected $version = '1.0';
 
 	/**
-	 * Instace of WC_Youtube_Videos.
+	 * Instace of WC_Videos.
 	 *
-	 * @var WC_Youtube_Videos
+	 * @var WC_Videos
 	 */
 	protected static $instance = null;
 
 	/**
 	 * Singalaton instance.
 	 *
-	 * @return WC_Youtube_Videos
+	 * @return WC_Videos
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -92,7 +92,7 @@ final class WC_Youtube_Videos {
 
 	public function load_plugin_textdomain() {
 		load_plugin_textdomain(
-			'youtube-videos-for-woocommerce',
+			'videos-for-woocommerce',
 			false,
 			dirname( plugin_basename( __FILE__ ) ) . '/languages'
 		 );
@@ -111,9 +111,9 @@ final class WC_Youtube_Videos {
 		), self_admin_url( 'admin.php' ) );
 
 		if ( empty( get_option( 'ytwc_youtube_api_key' ) ) ) {
-			$link_text = esc_html__( 'Set API Key', 'youtube-videos-for-woocommerce' );
+			$link_text = esc_html__( 'Set API Key', 'videos-for-woocommerce' );
 		} else {
-			$link_text = esc_html__( 'Settings', 'youtube-videos-for-woocommerce' );
+			$link_text = esc_html__( 'Settings', 'videos-for-woocommerce' );
 		}
 
 		// Add a few links to the existing links array.
@@ -123,22 +123,22 @@ final class WC_Youtube_Videos {
 	}
 
 	public function add_settings_section( $sections ) {
-		$sections['ytwc'] = esc_html__( 'Youtube Vidoes', 'youtube-videos-for-woocommerce' );
+		$sections['ytwc'] = esc_html__( 'Youtube Vidoes', 'videos-for-woocommerce' );
 		return $sections;
 	}
 
 	public function add_settings_fields( $fields, $section_id ) {
 		if ( $section_id === 'ytwc' ) {
 			$fields['ytwc_section_start'] = array(
-				'name'     => esc_html__( 'Youtube Videos Settings', 'youtube-videos-for-woocommerce' ),
+				'name'     => esc_html__( 'Youtube Videos Settings', 'videos-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'ytwc_section_start'
 			);
 			$fields['ytwc_youtube_api_key'] = array(
-				'name' => esc_html__( 'API Key', 'youtube-videos-for-woocommerce' ),
+				'name' => esc_html__( 'API Key', 'videos-for-woocommerce' ),
 				'type' => 'text',
 				'desc' => sprintf(
-					__( 'You have to put your API key here. %1$sClick here to get your API key%1$s', 'youtube-videos-for-woocommerce' ),
+					__( 'You have to put your API key here. %1$sClick here to get your API key%1$s', 'videos-for-woocommerce' ),
 					'<a href="https://developers.google.com/youtube/v3/getting-started" rel="noopener" target="_blank">',
 					'</a>',
 				),
@@ -163,7 +163,7 @@ final class WC_Youtube_Videos {
 	 */
 	public function add_product_tab( $tabs ) {
 		$tabs['ytwc'] = array(
-			'title' 	=> esc_html__( 'Videos', 'youtube-videos-for-woocommerce' ),
+			'title' 	=> esc_html__( 'Videos', 'videos-for-woocommerce' ),
 			'priority' 	=> 50,
 			'callback' 	=> array( $this, 'render_product_tab' )
 		);
@@ -301,8 +301,8 @@ final class WC_Youtube_Videos {
 	}
 }
 
-function wc_youtube_videos() {
-	return WC_Youtube_Videos::instance();
+function get_wc_videos() {
+	return WC_Videos::instance();
 }
 
-wc_youtube_videos();
+get_wc_videos();

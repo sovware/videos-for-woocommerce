@@ -1,5 +1,5 @@
 {
-    "name": "obiplabon/youtube-videos-for-woocommerce",
+    "name": "obiplabon/videos-for-woocommerce",
     "autoload": {
         "psr-4": {
             "Obiplabon\\YoutubeVideosForWoocommerce\\": "src/"

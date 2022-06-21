@@ -45,7 +45,7 @@ if (isset($GLOBALS['argv']) && in_array('--group=integration', $GLOBALS['argv'],
 	 */
 	function _manually_load_plugin()
 	{
-		require dirname(dirname(__FILE__)) . '/youtube-videos-for-woocommerce.php';
+		require dirname(dirname(__FILE__)) . '/videos-for-woocommerce.php';
 	}
 
 	tests_add_filter('muplugins_loaded', '_manually_load_plugin');

@@ -1,4 +1,4 @@
-=== Youtube Videos For WooCommerce ===
+=== Videos For WooCommerce ===
 Contributors: wpwax
 Tags: woocommerce product, youtube videos, product related videos,
 Requires at least: 5.5
